@@ -6,6 +6,13 @@ doctrine:
         # either here or in the DATABASE_URL env var (see .env file)
         #server_version: '15'
 
+        # set the correct database credentials
+        host: localhost
+        port: 3306
+        dbname: testSymphony
+        user: pimcore
+        password: pimcore
+
         profiling_collect_backtrace: '%kernel.debug%'
     orm:
         auto_generate_proxy_classes: true

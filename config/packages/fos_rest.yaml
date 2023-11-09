@@ -1,5 +1,6 @@
 # Read the documentation: https://fosrestbundle.readthedocs.io/en/3.x/
 fos_rest:
+ #   resource: '@FOSRestBundle/Resources/config/routing/all.xml'
 #    param_fetcher_listener:  true
 #    allowed_methods_listener:  true
     
@@ -14,5 +15,6 @@ fos_rest:
         rules:
             - { path: '^/api', priorities: ['json'], fallback_format: 'json' }
 
-    routing_loader: 
-        default_format: json
+#    routing_loader: 
+#        default_format: json
+#        include_format: true
