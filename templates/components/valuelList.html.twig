@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>History List</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'h.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'First In', 'h.firstIn') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Second In', 'h.secondIn') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Create Date', 'h.createDate') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Update Date', 'h.updateDate') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for history in pagination %}
+                <tr>
+                    <td>{{ history.id }}</td>
+                    <td>{{ history.firstIn }}</td>
+                    <td>{{ history.secondIn }}</td>
+                    <td>{{ history.createDate|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ history.updateDate ? history.updateDate|date('Y-m-d H:i:s') : 'N/A' }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}

@@ -3,3 +3,8 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+history_list:
+    path: '/history/list'
+    controller: 'App\Controller\ExchangeController::getHistoryList'
+    methods: ['GET']

@@ -10,12 +10,16 @@ use App\Entity\History;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 class ExchangeController extends AbstractController
 {
     /**
      * @Route("/exchange/values", name="exchange_values", methods={"POST"})
      */
+
+   
     public function exchangeValues(Request $request, EntityManagerInterface $entityManager, ValidatorInterface $validator): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -52,4 +56,30 @@ class ExchangeController extends AbstractController
 
         return new JsonResponse(['first' => $data['second'], 'second' => $data['first']]);
     }
+
+     /**
+    * @Route("/history/list", name="history_list", methods={"GET"})
+    */ 
+    
+    
+
+    public function getHistoryList(Request $request, PaginatorInterface $paginator, EntityManagerInterface $entityManager)
+    {
+        $historyRepository = $entityManager->getRepository(History::class);
+    
+        $query = $historyRepository->createQueryBuilder('h')
+           
+            ->orderBy('h.createDate', 'DESC') 
+            ->getQuery();
+    
+        
+        $pagination = $paginator->paginate(
+            $query, 
+            $request->query->getInt('page', 1), 
+            5 // Items per page
+        );
+    
+        return $this->render('components/valuelList.html.twig', ['pagination' => $pagination]);
+    }
+    
 }
