@@ -1,6 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    } 
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  </style>
     <h1>History List</h1>
 
     <table>
@@ -9,6 +30,8 @@
                 <th>{{ knp_pagination_sortable(pagination, 'Id', 'h.id') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'First In', 'h.firstIn') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Second In', 'h.secondIn') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'First Out', 'h.firstOut') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Second Out', 'h.secondOut') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Create Date', 'h.createDate') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Update Date', 'h.updateDate') }}</th>
             </tr>
@@ -19,6 +42,8 @@
                     <td>{{ history.id }}</td>
                     <td>{{ history.firstIn }}</td>
                     <td>{{ history.secondIn }}</td>
+                    <td>{{ history.firstOut }}</td>
+                    <td>{{ history.secondOut }}</td>
                     <td>{{ history.createDate|date('Y-m-d H:i:s') }}</td>
                     <td>{{ history.updateDate ? history.updateDate|date('Y-m-d H:i:s') : 'N/A' }}</td>
                 </tr>
